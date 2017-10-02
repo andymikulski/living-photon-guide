@@ -65,12 +65,6 @@ module.exports = {
       path: 'docs/react/:children',
       component: contentTmpl,
     }, {
-      path: 'changelog',
-      component: contentTmpl,
-    }, {
-      path: 'changelog-cn',
-      component: contentTmpl,
-    }, {
       path: 'components/:children/',
       component: contentTmpl,
     }, {

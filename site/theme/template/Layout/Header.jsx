@@ -153,50 +153,17 @@ export default class Header extends React.Component {
     });
 
     const menu = [
-      <Button className="lang" type="ghost" size="small" onClick={this.handleLangChange} key="lang">
-        <FormattedMessage id="app.header.lang" />
-      </Button>,
-      <Select
-        key="version"
-        className="version"
-        size="small"
-        dropdownMatchSelectWidth={false}
-        defaultValue={antdVersion}
-        onChange={this.handleVersionChange}
-        getPopupContainer={trigger => trigger.parentNode}
-      >
-        {versionOptions}
-      </Select>,
       <Menu mode={menuMode} selectedKeys={[activeMenuItem]} id="nav" key="nav">
         <Menu.Item key="home">
           <Link to={utils.getLocalizedPathname('/', isZhCN)}>
             <FormattedMessage id="app.header.menu.home" />
           </Link>
         </Menu.Item>
-        <Menu.Item key="docs/spec">
-          <Link to={utils.getLocalizedPathname('/docs/spec/introduce', isZhCN)}>
-            <FormattedMessage id="app.header.menu.spec" />
-          </Link>
-        </Menu.Item>
+
         <Menu.Item key="docs/react">
           <Link to={utils.getLocalizedPathname('/docs/react/introduce', isZhCN)}>
             <FormattedMessage id="app.header.menu.components" />
           </Link>
-        </Menu.Item>
-        <Menu.Item key="docs/pattern">
-          <Link to={utils.getLocalizedPathname('/docs/pattern/navigation', isZhCN)}>
-            <FormattedMessage id="app.header.menu.pattern" />
-          </Link>
-        </Menu.Item>
-        <Menu.Item key="docs/resource">
-          <Link to={utils.getLocalizedPathname('/docs/resource/download', isZhCN)}>
-            <FormattedMessage id="app.header.menu.resource" />
-          </Link>
-        </Menu.Item>
-        <Menu.Item key="mobile">
-          <a href="//mobile.ant.design">
-            <FormattedMessage id="app.header.menu.mobile" />
-          </a>
         </Menu.Item>
       </Menu>,
     ];
@@ -222,8 +189,7 @@ export default class Header extends React.Component {
         <Row>
           <Col lg={4} md={5} sm={24} xs={24}>
             <Link to={utils.getLocalizedPathname('/', isZhCN)} id="logo">
-              <img alt="logo" src="https://t.alipayobjects.com/images/rmsweb/T1B9hfXcdvXXXXXXXX.svg" />
-              <span>Ant Design</span>
+              <span>Photon Ant</span>
             </Link>
           </Col>
           <Col lg={20} md={19} sm={0} xs={0}>
