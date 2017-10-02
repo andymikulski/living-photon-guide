@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import omit from 'omit.js';
-import Icon from '../icon';
-import Group from './button-group';
+import Icon from 'antd/lib/icon';
+import { Group } from 'antd/lib/button';
 
 const rxTwoCNChar = /^[\u4e00-\u9fa5]{2}$/;
 const isTwoCNChar = rxTwoCNChar.test.bind(rxTwoCNChar);
