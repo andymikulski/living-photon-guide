@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="An enterprise-class UI design language and React-based implementation with a set of high-quality React components, one of best React UI library for enterprises">
+    <title>Photon Ant Design</title>
+    <script>
+    (function() {
+      function isLocalStorageNameSupported() {
+        var testKey = 'test';
+        var storage = window.localStorage;
+        try {
+          storage.setItem(testKey, '1');
+          storage.removeItem(testKey);
+          return true;
+        } catch (error) {
+          return false;
+        }
+      }
+      // 优先级提高到所有静态资源的前面，语言不对，加载其他静态资源没意义
+      var pathname = location.pathname;
+
+      function isZhCN(pathname) {
+        return /-cn\/?$/.test(pathname);
+      }
+      function getLocalizedPathname(path, zhCN) {
+        var pathname = path.startsWith('/') ? path : '/' + path;
+        if (!zhCN) { // to enUS
+          return /\/?index-cn/.test(pathname) ? '/' : pathname.replace('-cn', '');
+        } else if (pathname === '/') {
+          return '/index-cn';
+        } else if (pathname.endsWith('/')) {
+          return pathname.replace(/\/$/, '-cn/');
+        }
+        return pathname + '-cn';
+      }
+
+      // 兼容旧的 URL， `?locale=...`
+      var queryString = location.search;
+      if (queryString) {
+        var isZhCNConfig = queryString.indexOf('zh-CN') > -1;
+        if (isZhCNConfig && !isZhCN(pathname)) {
+          location.pathname = getLocalizedPathname(pathname, isZhCNConfig)
+        }
+      }
+
+      // 首页无视链接里面的语言设置 https://github.com/ant-design/ant-design/issues/4552
+      if (isLocalStorageNameSupported() && (pathname === '/' || pathname === '/index-cn')) {
+        var lang = (window.localStorage && localStorage.getItem('locale')) || (navigator.language.toLowerCase() === 'zh-cn' ? 'zh-CN' : 'en-US');
+        // safari is 'zh-cn', while other browser is 'zh-CN';
+        if ((lang === 'zh-CN') !== isZhCN(pathname)) {
+          location.pathname = getLocalizedPathname(pathname, lang === 'zh-CN');
+        }
+      }
+      document.documentElement.className += isZhCN(pathname) ? 'zh-cn' : 'en-us';
+    })()
+    </script>
+    <link rel="icon" href="https://t.alipayobjects.com/images/T1QUBfXo4fXXXXXXXX.png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.cnpmjs.org/css?family=Lato:400,700|Raleway"/>
+    <link rel="stylesheet" type="text/css" href="/index-1.css"/>
+    <link rel="stylesheet" type="text/css" href="/index-2.css"/>
+    <link rel="stylesheet" type="text/css" href="/index-3.css"/>
+    <style id="nprogress-style">
+      #nprogress { display: none }
+    </style>
+    <!--[if lte IE 10]>
+      <script
+        src="https://as.alipayobjects.com/g/component/??console-polyfill/0.2.2/index.js,media-match/2.0.2/media.match.min.js"></script>
+    <![endif]-->
+    <script>
+    if (!window.Intl) {
+      document.writeln('<script src="https://as.alipayobjects.com/g/component/intl/1.0.1/??Intl.js,locale-data/jsonp/en.js,locale-data/jsonp/zh.js">' + '<' + '/script>');
+    }
+    if (!window.Promise) {
+      document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"' + '>' + '<' + '/' + 'script>');
+    }
+    </script>
+
+  </head>
+  <body>
+    <div id="react-content">
+      <div class="page-wrapper" data-reactroot="" data-reactid="1" data-react-checksum="-1115249998"><header id="header" class="clearfix" data-reactid="2"><div class="ant-row" data-reactid="3"><div class="ant-col-xs-24 ant-col-sm-24 ant-col-md-5 ant-col-lg-4" data-reactid="4"><a id="logo" href="/" data-reactid="5"><span data-reactid="6">Photon Ant</span></a></div><div class="ant-col-xs-0 ant-col-sm-0 ant-col-md-19 ant-col-lg-20" data-reactid="7"><div id="search-box" data-reactid="8"><div class="ant-select-show-search ant-select-auto-complete ant-select ant-select-combobox ant-select-enabled" data-reactid="9"><div class="ant-select-selection
+            ant-select-selection--single" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-expanded="false" data-reactid="10"><div class="ant-select-selection__rendered" data-reactid="11"><div style="display:block;user-select:none;-webkit-user-select:none;" unselectable="unselectable" class="ant-select-selection__placeholder" data-reactid="12">Search Components...</div><ul data-reactid="13"><li class="ant-select-search ant-select-search--inline" data-reactid="14"><div class="ant-select-search__field__wrap" data-reactid="15"><input type="text" value="" class="ant-input ant-select-search__field" data-reactid="16"/><span class="ant-select-search__field__mirror" data-reactid="17"><!-- react-text: 18 --><!-- /react-text --><!-- react-text: 19 --> <!-- /react-text --></span></div></li></ul></div><span class="ant-select-arrow" style="user-select:none;-webkit-user-select:none;" unselectable="unselectable" data-reactid="20"><b data-reactid="21"></b></span></div></div></div><ul class="ant-menu ant-menu-horizontal ant-menu-light ant-menu-root" role="menu" aria-activedescendant="" id="nav" tabindex="0" data-reactid="22"><li class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="23"><a href="/" data-reactid="24"><span data-reactid="25">Home</span></a></li><li class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="26"><a href="/docs/react/introduce" data-reactid="27"><span data-reactid="28">Components</span></a></li></ul></div></div></header><div class="main-wrapper" data-reactid="29"><div class="ant-row" data-reactid="30"><div class="ant-col-xs-24 ant-col-sm-24 ant-col-md-6 ant-col-lg-4" data-reactid="31"><ul class="ant-menu ant-menu-inline aside-container ant-menu-light ant-menu-root" role="menu" aria-activedescendant="" tabindex="0" data-reactid="32"><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="33"><a href="/docs/spec/introduce" data-reactid="34">Ant Design</a></li><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="35"><a href="/docs/spec/feature" data-reactid="36">Features</a></li><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="37"><a href="/docs/spec/cases" data-reactid="38">Cases</a></li><li class="ant-menu-submenu-inline ant-menu-submenu-open ant-menu-submenu" data-reactid="39"><div style="padding-left:24px;" class="ant-menu-submenu-title" aria-expanded="true" aria-owns="Principles$Menu" aria-haspopup="true" data-reactid="40"><h4 data-reactid="41">Principles</h4></div><ul class="ant-menu ant-menu-inline  ant-menu-sub" role="menu" aria-activedescendant="" id="Principles$Menu" data-reactid="42"><li style="padding-left:48px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="43"><a href="/docs/spec/proximity" data-reactid="44">Proximity</a></li><li style="padding-left:48px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="45"><a href="/docs/spec/alignment" data-reactid="46">Alignment</a></li><li style="padding-left:48px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="47"><a href="/docs/spec/contrast" data-reactid="48">Contrast</a></li><li style="padding-left:48px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="49"><a href="/docs/spec/repetition" data-reactid="50">Repetition</a></li><li style="padding-left:48px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="51"><a href="/docs/spec/direct" data-reactid="52">Make it Direct</a></li><li style="padding-left:48px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="53"><a href="/docs/spec/stay" data-reactid="54">Stay on the Page</a></li><li style="padding-left:48px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="55"><a href="/docs/spec/lightweight" data-reactid="56">Keep it Lightweight</a></li><li style="padding-left:48px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="57"><a href="/docs/spec/invitation" data-reactid="58">Provide an Invitation</a></li><li style="padding-left:48px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="59"><a href="/docs/spec/transition" data-reactid="60">Use Transition</a></li><li style="padding-left:48px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="61"><a href="/docs/spec/reaction" data-reactid="62">React Immediately</a></li></ul></li><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="63"><a href="/docs/spec/colors" data-reactid="64">Colors</a></li><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="65"><a href="/docs/spec/icon" data-reactid="66">Icons</a></li><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="67"><a href="/docs/spec/font" data-reactid="68">Font</a></li><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="69"><a href="/docs/spec/copywriting" data-reactid="70">Copywriting</a></li><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="71"><a href="/docs/spec/layout" data-reactid="72">Layout</a></li><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="73"><a href="/docs/spec/navigation" data-reactid="74">Navigation</a></li><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="75"><a href="/docs/spec/data-entry" data-reactid="76">Data Entry</a></li><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="77"><a href="/docs/spec/data-display" data-reactid="78">Data Display</a></li><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="79"><a href="/docs/spec/feedback" data-reactid="80">Feedback</a></li><li style="padding-left:24px;" class="ant-menu-item-selected ant-menu-item" role="menuitem" aria-selected="true" data-reactid="81"><a href="http://motion.ant.design" target="_blank" rel="noopener noreferrer" class="menu-item-link-outside" data-reactid="82"><!-- react-text: 83 -->Motion<!-- /react-text --><!-- react-text: 84 --> <!-- /react-text --><i class="anticon anticon-export" data-reactid="85"></i></a></li></ul></div><div class="main-container ant-col-xs-24 ant-col-sm-24 ant-col-md-18 ant-col-lg-20" data-reactid="86"><article class="markdown" data-reactid="87"><div data-show="true" class="ant-alert ant-alert-warning ant-alert-no-icon" data-reactid="88"><span class="ant-alert-message" data-reactid="89"><span data-reactid="90"><!-- react-text: 91 -->This article has not been translated, hope that your can PR to translated it.<!-- /react-text --><a href="https://github.com/ant-design/ant-design/issues/1471" data-reactid="92"> Help us!</a></span></span><span class="ant-alert-description" data-reactid="93"></span></div><h1 data-reactid="94"><!-- react-text: 95 -->Motion<!-- /react-text --><!-- react-empty: 96 --></h1><section class="markdown" data-reactid="97"></section><section class="markdown api-container" data-reactid="98"></section></article></div></div><div class="ant-row" data-reactid="99"><div class="ant-col-xs-24 ant-col-sm-24 ant-col-md-18 ant-col-md-offset-6 ant-col-lg-20 ant-col-lg-offset-4" data-reactid="100"><section class="prev-next-nav" data-reactid="101"><a class="prev-page" href="/docs/spec/feedback" data-reactid="102">Feedback</a></section></div></div></div><footer id="footer" data-reactid="103"><ul data-reactid="104"><li data-reactid="105"></li><li data-reactid="106"></li><li data-reactid="107"></li><li data-reactid="108"><h2 data-reactid="109"><!-- react-text: 110 -->Ant Design Copyright © <!-- /react-text --><!-- react-text: 111 -->2017<!-- /react-text --></h2><h2 data-reactid="112"><!-- react-text: 113 -->Photon Copyright © <!-- /react-text --><!-- react-text: 114 -->2017<!-- /react-text --></h2></li></ul></footer></div>
+    </div>
+    
+      
+        <script src="https://as.alipayobjects.com/g/component/??react/15.6.1/react.min.js,react/15.6.1/react-dom.min.js"></script>
+      
+    
+    <script src="/common.js"></script>
+    <script src="/index.js"></script>
+  </body>
+</html>

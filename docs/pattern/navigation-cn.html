@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="An enterprise-class UI design language and React-based implementation with a set of high-quality React components, one of best React UI library for enterprises">
+    <title>Photon Ant Design</title>
+    <script>
+    (function() {
+      function isLocalStorageNameSupported() {
+        var testKey = 'test';
+        var storage = window.localStorage;
+        try {
+          storage.setItem(testKey, '1');
+          storage.removeItem(testKey);
+          return true;
+        } catch (error) {
+          return false;
+        }
+      }
+      // 优先级提高到所有静态资源的前面，语言不对，加载其他静态资源没意义
+      var pathname = location.pathname;
+
+      function isZhCN(pathname) {
+        return /-cn\/?$/.test(pathname);
+      }
+      function getLocalizedPathname(path, zhCN) {
+        var pathname = path.startsWith('/') ? path : '/' + path;
+        if (!zhCN) { // to enUS
+          return /\/?index-cn/.test(pathname) ? '/' : pathname.replace('-cn', '');
+        } else if (pathname === '/') {
+          return '/index-cn';
+        } else if (pathname.endsWith('/')) {
+          return pathname.replace(/\/$/, '-cn/');
+        }
+        return pathname + '-cn';
+      }
+
+      // 兼容旧的 URL， `?locale=...`
+      var queryString = location.search;
+      if (queryString) {
+        var isZhCNConfig = queryString.indexOf('zh-CN') > -1;
+        if (isZhCNConfig && !isZhCN(pathname)) {
+          location.pathname = getLocalizedPathname(pathname, isZhCNConfig)
+        }
+      }
+
+      // 首页无视链接里面的语言设置 https://github.com/ant-design/ant-design/issues/4552
+      if (isLocalStorageNameSupported() && (pathname === '/' || pathname === '/index-cn')) {
+        var lang = (window.localStorage && localStorage.getItem('locale')) || (navigator.language.toLowerCase() === 'zh-cn' ? 'zh-CN' : 'en-US');
+        // safari is 'zh-cn', while other browser is 'zh-CN';
+        if ((lang === 'zh-CN') !== isZhCN(pathname)) {
+          location.pathname = getLocalizedPathname(pathname, lang === 'zh-CN');
+        }
+      }
+      document.documentElement.className += isZhCN(pathname) ? 'zh-cn' : 'en-us';
+    })()
+    </script>
+    <link rel="icon" href="https://t.alipayobjects.com/images/T1QUBfXo4fXXXXXXXX.png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.cnpmjs.org/css?family=Lato:400,700|Raleway"/>
+    <link rel="stylesheet" type="text/css" href="/index-1.css"/>
+    <link rel="stylesheet" type="text/css" href="/index-2.css"/>
+    <link rel="stylesheet" type="text/css" href="/index-3.css"/>
+    <style id="nprogress-style">
+      #nprogress { display: none }
+    </style>
+    <!--[if lte IE 10]>
+      <script
+        src="https://as.alipayobjects.com/g/component/??console-polyfill/0.2.2/index.js,media-match/2.0.2/media.match.min.js"></script>
+    <![endif]-->
+    <script>
+    if (!window.Intl) {
+      document.writeln('<script src="https://as.alipayobjects.com/g/component/intl/1.0.1/??Intl.js,locale-data/jsonp/en.js,locale-data/jsonp/zh.js">' + '<' + '/script>');
+    }
+    if (!window.Promise) {
+      document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"' + '>' + '<' + '/' + 'script>');
+    }
+    </script>
+
+  </head>
+  <body>
+    <div id="react-content">
+      <div class="page-wrapper" data-reactroot="" data-reactid="1" data-react-checksum="-75768491"><header id="header" class="clearfix" data-reactid="2"><div class="ant-row" data-reactid="3"><div class="ant-col-xs-24 ant-col-sm-24 ant-col-md-5 ant-col-lg-4" data-reactid="4"><a id="logo" href="/index-cn" data-reactid="5"><span data-reactid="6">Photon Ant</span></a></div><div class="ant-col-xs-0 ant-col-sm-0 ant-col-md-19 ant-col-lg-20" data-reactid="7"><div id="search-box" data-reactid="8"><div class="ant-select-show-search ant-select-auto-complete ant-select ant-select-combobox ant-select-enabled" data-reactid="9"><div class="ant-select-selection
+            ant-select-selection--single" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-expanded="false" data-reactid="10"><div class="ant-select-selection__rendered" data-reactid="11"><div style="display:block;user-select:none;-webkit-user-select:none;" unselectable="unselectable" class="ant-select-selection__placeholder" data-reactid="12">搜索组件...</div><ul data-reactid="13"><li class="ant-select-search ant-select-search--inline" data-reactid="14"><div class="ant-select-search__field__wrap" data-reactid="15"><input type="text" value="" class="ant-input ant-select-search__field" data-reactid="16"/><span class="ant-select-search__field__mirror" data-reactid="17"><!-- react-text: 18 --><!-- /react-text --><!-- react-text: 19 --> <!-- /react-text --></span></div></li></ul></div><span class="ant-select-arrow" style="user-select:none;-webkit-user-select:none;" unselectable="unselectable" data-reactid="20"><b data-reactid="21"></b></span></div></div></div><ul class="ant-menu ant-menu-horizontal ant-menu-light ant-menu-root" role="menu" aria-activedescendant="" id="nav" tabindex="0" data-reactid="22"><li class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="23"><a href="/index-cn" data-reactid="24"><span data-reactid="25">首页</span></a></li><li class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="26"><a href="/docs/react/introduce-cn" data-reactid="27"><span data-reactid="28">组件</span></a></li></ul></div></div></header><div class="main-wrapper" data-reactid="29"><div class="ant-row" data-reactid="30"><div class="ant-col-xs-24 ant-col-sm-24 ant-col-md-6 ant-col-lg-4" data-reactid="31"><ul class="ant-menu ant-menu-inline aside-container ant-menu-light ant-menu-root" role="menu" aria-activedescendant="" tabindex="0" data-reactid="32"><li style="padding-left:24px;" class="ant-menu-item-selected ant-menu-item" role="menuitem" aria-selected="true" data-reactid="33"><a href="/docs/pattern/navigation-cn" data-reactid="34">导航</a></li><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="35"><a href="/docs/pattern/form-cn" data-reactid="36">表单</a></li><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="37"><a href="/docs/pattern/list-cn" data-reactid="38">列表</a></li><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="39"><a href="/docs/pattern/table-cn" data-reactid="40">表格</a></li><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="41"><a href="/docs/pattern/complex-table-cn" data-reactid="42">表格：复杂数据</a></li><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="43"><a href="/docs/pattern/advanced-search-cn" data-reactid="44">高级搜索</a></li></ul></div><div class="main-container ant-col-xs-24 ant-col-sm-24 ant-col-md-18 ant-col-lg-20" data-reactid="45"><article class="markdown" data-reactid="46"><h1 data-reactid="47"><!-- react-text: 48 -->导航<!-- /react-text --><!-- react-empty: 49 --></h1><section class="markdown" data-reactid="50"><p data-reactid="51"><!-- react-text: 52 -->在广义上，任何告知用户他在哪里，他能去什么地方以及如何到达那里的方式，都可以称之为导航。而我们将中后台常见的导航方式进行提炼和封装，帮助设计者快速构建清晰和流畅的系统。当设计者使用导航或者自定义一些导航结构时，请注意：<!-- /react-text --></p><ol data-reactid="53"><li data-reactid="54"><p data-reactid="55"><!-- react-text: 56 -->尽可能提供标示、上下文线索以及网站地图，避免用户迷路；<!-- /react-text --></p></li><li data-reactid="57"><p data-reactid="58"><!-- react-text: 59 -->保持导航样式和行为一致或者减少导航数量，降低用户学习成本；<!-- /react-text --></p></li><li data-reactid="60"><p data-reactid="61"><!-- react-text: 62 -->尽可能减少页面间的跳转（eg：一个常见任务需要多个页面跳转时，请减少至一至两次），让用户移动距离保持简短。<!-- /react-text --></p></li></ol></section><section class="toc" data-reactid="63"><ul data-reactid="64"><li data-reactid="65"><a class="bisheng-toc-h2" href="#常见导航" title="常见导航" data-reactid="66"><!-- react-text: 67 -->常见导航<!-- /react-text --></a></li><li data-reactid="68"><a class="bisheng-toc-h2" href="#侧栏导航" title="侧栏导航" data-reactid="69"><!-- react-text: 70 -->侧栏导航<!-- /react-text --></a></li><li data-reactid="71"><a class="bisheng-toc-h2" href="#顶部导航" title="顶部导航" data-reactid="72"><!-- react-text: 73 -->顶部导航<!-- /react-text --></a></li></ul></section><section class="markdown" data-reactid="74"><h2 id="常见导航" data-reactid="75"><span data-reactid="76"><!-- react-text: 77 -->常见导航<!-- /react-text --></span><a href="#常见导航" class="anchor" data-reactid="78">#</a></h2><table style="font-size:12px;float:right;width:600px;margin-left:60px;margin-bottom:100px;" data-reactid="79"><tbody data-reactid="80"><tr data-reactid="81"><th data-reactid="82"></th><th data-reactid="83"><!-- react-text: 84 -->侧栏导航<!-- /react-text --></th><th data-reactid="85"><!-- react-text: 86 -->顶部导航<!-- /react-text --></th></tr><tr data-reactid="87"><th data-reactid="88"><!-- react-text: 89 -->优点<!-- /react-text --></th><td data-reactid="90"><!-- react-text: 91 -->导航的层级扩展性强；水平空间利用率高，可展示更多内容；导航可以固定，使得用户在操作和浏览时可以快速定位和切换当前位置，非常高效。<!-- /react-text --></td><td data-reactid="92"><!-- react-text: 93 -->人的浏览习惯是自上而下的，便于浏览和点击；通常将内容放在固定尺寸（例如：1208px）内，整个页面排版稳定，不受用户终端显示器影响。<!-- /react-text --></td></tr><tr data-reactid="94"><th data-reactid="95"><!-- react-text: 96 -->缺点<!-- /react-text --></th><td data-reactid="97"><!-- react-text: 98 -->内容区域一般放置在栅格上，所以排版受用户终端显示器影响大。<!-- /react-text --></td><td data-reactid="99"><!-- react-text: 100 -->目前显示器多为宽屏，顶部导航对垂直空间占用率大，而对水平空间利用率低；由于中英文都是横向书写，顶部导航会限制导航类目的数量和长度。<!-- /react-text --></td></tr><tr data-reactid="101"><th data-reactid="102"><!-- react-text: 103 -->总结<!-- /react-text --></th><td data-reactid="104"><!-- react-text: 105 -->适用在操作性强、中后台管理性质的应用。<!-- /react-text --></td><td data-reactid="106"><!-- react-text: 107 -->一般适用在浏览性强、门户性质的网站，以及一些比较前台化的应用。<!-- /react-text --></td></tr></tbody></table><p data-reactid="108"><!-- react-text: 109 -->我们将常见的导航模式分为：侧栏导航和顶部导航，两者各有优缺点，设计者可以根据各自的业务需求进行选择。<!-- /react-text --></p><p data-reactid="110"><!-- react-text: 111 -->前端实现代码可以参考 <!-- /react-text --><a href="/docs/spec/layout-cn#docs-spec-layout-demo-top" data-reactid="112">常用布局</a><!-- react-text: 113 -->。<!-- /react-text --></p><h2 id="侧栏导航" data-reactid="114"><span data-reactid="115"><!-- react-text: 116 -->侧栏导航<!-- /react-text --></span><a href="#侧栏导航" class="anchor" data-reactid="117">#</a></h2><hr data-reactid="118"/><div class="preview-image-boxes clearfix" data-reactid="119"><div class="preview-image-box" data-reactid="120"><div class="preview-image-wrapper" data-reactid="121"><img class="preview-img no-padding" src="https://os.alipayobjects.com/rmsportal/hutiGZWQYmIspjw.png" alt="结构示例" data-reactid="122"/></div><div class="preview-image-title" data-reactid="123">结构示例</div><div class="preview-image-description" data-reactid="124"></div><!-- react-empty: 125 --></div></div><p data-reactid="126"><!-- react-text: 127 -->导航的结构由以下几部分组成。<!-- /react-text --></p><ol data-reactid="128"><li data-reactid="129"><p data-reactid="130"><!-- react-text: 131 -->产品 Logo 和名称<!-- /react-text --></p></li><li data-reactid="132"><p data-reactid="133"><!-- react-text: 134 -->业务类目<!-- /react-text --></p></li><li data-reactid="135"><p data-reactid="136"><!-- react-text: 137 -->登录工具<!-- /react-text --></p></li><li data-reactid="138"><p data-reactid="139"><!-- react-text: 140 -->面包屑（可选）<!-- /react-text --></p></li></ol><h4 id="关于面包屑" data-reactid="141"><span data-reactid="142"><!-- react-text: 143 -->关于面包屑<!-- /react-text --></span><a href="#关于面包屑" class="anchor" data-reactid="144">#</a></h4><blockquote data-reactid="145"><ol data-reactid="146"><li data-reactid="147"><p data-reactid="148"><!-- react-text: 149 -->尽可能不使用面包屑，尤其是当前页面的导航能清晰的告诉用户他在哪里时。<!-- /react-text --></p></li><li data-reactid="150"><p data-reactid="151"><!-- react-text: 152 -->面包屑可以分为这几类：<!-- /react-text --></p><ul data-reactid="153"><li data-reactid="154"><p data-reactid="155"><!-- react-text: 156 -->路径型：是一个动态显示用户到达页面经过的途径。<!-- /react-text --></p></li><li data-reactid="157"><p data-reactid="158"><!-- react-text: 159 -->位置型：位置型是固定的，显示了页面在网站结构中的位置。<!-- /react-text --></p></li><li data-reactid="160"><p data-reactid="161"><!-- react-text: 162 -->属性型：属性型给出当前页面的分类信息。<!-- /react-text --></p></li></ul></li></ol></blockquote><p data-reactid="163"><br data-reactid="164"/></p><div class="preview-image-boxes clearfix" data-reactid="165"><div class="preview-image-box" data-reactid="166"><div class="preview-image-wrapper" data-reactid="167"><img class="preview-img no-padding" src="https://os.alipayobjects.com/rmsportal/IeuIHdFfKCIABHV.png" alt="一级类目" data-reactid="168"/></div><div class="preview-image-title" data-reactid="169">一级类目</div><div class="preview-image-description" data-reactid="170"></div><!-- react-empty: 171 --></div></div><div class="preview-image-boxes clearfix" data-reactid="172"><div class="preview-image-box" data-reactid="173"><div class="preview-image-wrapper" data-reactid="174"><img class="preview-img no-padding" src="https://os.alipayobjects.com/rmsportal/kAbbeJekohMtubV.png" alt="二级类目" data-reactid="175"/></div><div class="preview-image-title" data-reactid="176">二级类目</div><div class="preview-image-description" data-reactid="177"></div><!-- react-empty: 178 --></div></div><div class="preview-image-boxes clearfix" data-reactid="179"><div class="preview-image-box" data-reactid="180"><div class="preview-image-wrapper" data-reactid="181"><img class="preview-img no-padding" src="https://os.alipayobjects.com/rmsportal/qaOifucSTWooBTL.png" alt="三级类目及以上" data-reactid="182"/></div><div class="preview-image-title" data-reactid="183">三级类目及以上</div><div class="preview-image-description" data-reactid="184"></div><!-- react-empty: 185 --></div></div><p data-reactid="186"><!-- react-text: 187 -->我们定义了不同类目层级所对应的导航样式。<!-- /react-text --></p><h2 id="顶部导航" data-reactid="188"><span data-reactid="189"><!-- react-text: 190 -->顶部导航<!-- /react-text --></span><a href="#顶部导航" class="anchor" data-reactid="191">#</a></h2><hr data-reactid="192"/><div class="preview-image-boxes clearfix" data-reactid="193"><div class="preview-image-box" data-reactid="194"><div class="preview-image-wrapper" data-reactid="195"><img class="preview-img no-padding" src="https://os.alipayobjects.com/rmsportal/MVccMQxgCeYfwjS.png" alt="结构示例" data-reactid="196"/></div><div class="preview-image-title" data-reactid="197">结构示例</div><div class="preview-image-description" data-reactid="198"></div><!-- react-empty: 199 --></div></div><p data-reactid="200"><!-- react-text: 201 -->导航的结构由以下几部分组成。<!-- /react-text --></p><ol data-reactid="202"><li data-reactid="203"><p data-reactid="204"><!-- react-text: 205 -->产品 Logo 和名称<!-- /react-text --></p></li><li data-reactid="206"><p data-reactid="207"><!-- react-text: 208 -->业务类目<!-- /react-text --></p></li><li data-reactid="209"><p data-reactid="210"><!-- react-text: 211 -->登录工具<!-- /react-text --></p></li><li data-reactid="212"><p data-reactid="213"><!-- react-text: 214 -->面包屑（可选）<!-- /react-text --></p></li></ol><p data-reactid="215"><br data-reactid="216"/></p><div class="preview-image-boxes clearfix" data-reactid="217"><div class="preview-image-box" data-reactid="218"><div class="preview-image-wrapper" data-reactid="219"><img class="preview-img no-padding" src="https://os.alipayobjects.com/rmsportal/KvEsIDOYzknbsPT.png" alt="一级类目" data-reactid="220"/></div><div class="preview-image-title" data-reactid="221">一级类目</div><div class="preview-image-description" data-reactid="222"></div><!-- react-empty: 223 --></div></div><div class="preview-image-boxes clearfix" data-reactid="224"><div class="preview-image-box" data-reactid="225"><div class="preview-image-wrapper" data-reactid="226"><img class="preview-img no-padding" src="https://os.alipayobjects.com/rmsportal/xXaCRVPIfmjDyIL.png" alt="二级类目" data-reactid="227"/></div><div class="preview-image-title" data-reactid="228">二级类目</div><div class="preview-image-description" data-reactid="229"></div><!-- react-empty: 230 --></div></div><div class="preview-image-boxes clearfix" data-reactid="231"><div class="preview-image-box" data-reactid="232"><div class="preview-image-wrapper" data-reactid="233"><img class="preview-img no-padding" src="https://os.alipayobjects.com/rmsportal/ollkHeFUFQElelm.png" alt="三级类目及以上" data-reactid="234"/></div><div class="preview-image-title" data-reactid="235">三级类目及以上</div><div class="preview-image-description" data-reactid="236"></div><!-- react-empty: 237 --></div></div><p data-reactid="238"><!-- react-text: 239 -->不同类目层级。<!-- /react-text --></p></section><section class="markdown api-container" data-reactid="240"></section></article></div></div><div class="ant-row" data-reactid="241"><div class="ant-col-xs-24 ant-col-sm-24 ant-col-md-18 ant-col-md-offset-6 ant-col-lg-20 ant-col-lg-offset-4" data-reactid="242"><section class="prev-next-nav" data-reactid="243"><a class="next-page" href="/docs/pattern/form-cn" data-reactid="244">表单</a></section></div></div></div><footer id="footer" data-reactid="245"><ul data-reactid="246"><li data-reactid="247"></li><li data-reactid="248"></li><li data-reactid="249"></li><li data-reactid="250"><h2 data-reactid="251"><!-- react-text: 252 -->Ant Design Copyright © <!-- /react-text --><!-- react-text: 253 -->2017<!-- /react-text --></h2><h2 data-reactid="254"><!-- react-text: 255 -->Photon Copyright © <!-- /react-text --><!-- react-text: 256 -->2017<!-- /react-text --></h2></li></ul></footer></div>
+    </div>
+    
+      
+        <script src="https://as.alipayobjects.com/g/component/??react/15.6.1/react.min.js,react/15.6.1/react-dom.min.js"></script>
+      
+    
+    <script src="/common.js"></script>
+    <script src="/index.js"></script>
+  </body>
+</html>

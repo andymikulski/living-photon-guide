@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="An enterprise-class UI design language and React-based implementation with a set of high-quality React components, one of best React UI library for enterprises">
+    <title>Photon Ant Design</title>
+    <script>
+    (function() {
+      function isLocalStorageNameSupported() {
+        var testKey = 'test';
+        var storage = window.localStorage;
+        try {
+          storage.setItem(testKey, '1');
+          storage.removeItem(testKey);
+          return true;
+        } catch (error) {
+          return false;
+        }
+      }
+      // 优先级提高到所有静态资源的前面，语言不对，加载其他静态资源没意义
+      var pathname = location.pathname;
+
+      function isZhCN(pathname) {
+        return /-cn\/?$/.test(pathname);
+      }
+      function getLocalizedPathname(path, zhCN) {
+        var pathname = path.startsWith('/') ? path : '/' + path;
+        if (!zhCN) { // to enUS
+          return /\/?index-cn/.test(pathname) ? '/' : pathname.replace('-cn', '');
+        } else if (pathname === '/') {
+          return '/index-cn';
+        } else if (pathname.endsWith('/')) {
+          return pathname.replace(/\/$/, '-cn/');
+        }
+        return pathname + '-cn';
+      }
+
+      // 兼容旧的 URL， `?locale=...`
+      var queryString = location.search;
+      if (queryString) {
+        var isZhCNConfig = queryString.indexOf('zh-CN') > -1;
+        if (isZhCNConfig && !isZhCN(pathname)) {
+          location.pathname = getLocalizedPathname(pathname, isZhCNConfig)
+        }
+      }
+
+      // 首页无视链接里面的语言设置 https://github.com/ant-design/ant-design/issues/4552
+      if (isLocalStorageNameSupported() && (pathname === '/' || pathname === '/index-cn')) {
+        var lang = (window.localStorage && localStorage.getItem('locale')) || (navigator.language.toLowerCase() === 'zh-cn' ? 'zh-CN' : 'en-US');
+        // safari is 'zh-cn', while other browser is 'zh-CN';
+        if ((lang === 'zh-CN') !== isZhCN(pathname)) {
+          location.pathname = getLocalizedPathname(pathname, lang === 'zh-CN');
+        }
+      }
+      document.documentElement.className += isZhCN(pathname) ? 'zh-cn' : 'en-us';
+    })()
+    </script>
+    <link rel="icon" href="https://t.alipayobjects.com/images/T1QUBfXo4fXXXXXXXX.png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.cnpmjs.org/css?family=Lato:400,700|Raleway"/>
+    <link rel="stylesheet" type="text/css" href="/index-1.css"/>
+    <link rel="stylesheet" type="text/css" href="/index-2.css"/>
+    <link rel="stylesheet" type="text/css" href="/index-3.css"/>
+    <style id="nprogress-style">
+      #nprogress { display: none }
+    </style>
+    <!--[if lte IE 10]>
+      <script
+        src="https://as.alipayobjects.com/g/component/??console-polyfill/0.2.2/index.js,media-match/2.0.2/media.match.min.js"></script>
+    <![endif]-->
+    <script>
+    if (!window.Intl) {
+      document.writeln('<script src="https://as.alipayobjects.com/g/component/intl/1.0.1/??Intl.js,locale-data/jsonp/en.js,locale-data/jsonp/zh.js">' + '<' + '/script>');
+    }
+    if (!window.Promise) {
+      document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"' + '>' + '<' + '/' + 'script>');
+    }
+    </script>
+
+  </head>
+  <body>
+    <div id="react-content">
+      <div class="page-wrapper" data-reactroot="" data-reactid="1" data-react-checksum="-598157808"><header id="header" class="clearfix" data-reactid="2"><div class="ant-row" data-reactid="3"><div class="ant-col-xs-24 ant-col-sm-24 ant-col-md-5 ant-col-lg-4" data-reactid="4"><a id="logo" href="/index-cn" data-reactid="5"><span data-reactid="6">Photon Ant</span></a></div><div class="ant-col-xs-0 ant-col-sm-0 ant-col-md-19 ant-col-lg-20" data-reactid="7"><div id="search-box" data-reactid="8"><div class="ant-select-show-search ant-select-auto-complete ant-select ant-select-combobox ant-select-enabled" data-reactid="9"><div class="ant-select-selection
+            ant-select-selection--single" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-expanded="false" data-reactid="10"><div class="ant-select-selection__rendered" data-reactid="11"><div style="display:block;user-select:none;-webkit-user-select:none;" unselectable="unselectable" class="ant-select-selection__placeholder" data-reactid="12">搜索组件...</div><ul data-reactid="13"><li class="ant-select-search ant-select-search--inline" data-reactid="14"><div class="ant-select-search__field__wrap" data-reactid="15"><input type="text" value="" class="ant-input ant-select-search__field" data-reactid="16"/><span class="ant-select-search__field__mirror" data-reactid="17"><!-- react-text: 18 --><!-- /react-text --><!-- react-text: 19 --> <!-- /react-text --></span></div></li></ul></div><span class="ant-select-arrow" style="user-select:none;-webkit-user-select:none;" unselectable="unselectable" data-reactid="20"><b data-reactid="21"></b></span></div></div></div><ul class="ant-menu ant-menu-horizontal ant-menu-light ant-menu-root" role="menu" aria-activedescendant="" id="nav" tabindex="0" data-reactid="22"><li class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="23"><a href="/index-cn" data-reactid="24"><span data-reactid="25">首页</span></a></li><li class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="26"><a href="/docs/react/introduce-cn" data-reactid="27"><span data-reactid="28">组件</span></a></li></ul></div></div></header><div class="main-wrapper" data-reactid="29"><div class="ant-row" data-reactid="30"><div class="ant-col-xs-24 ant-col-sm-24 ant-col-md-6 ant-col-lg-4" data-reactid="31"><ul class="ant-menu ant-menu-inline aside-container ant-menu-light ant-menu-root" role="menu" aria-activedescendant="" tabindex="0" data-reactid="32"><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="33"><a href="/docs/pattern/navigation-cn" data-reactid="34">导航</a></li><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="35"><a href="/docs/pattern/form-cn" data-reactid="36">表单</a></li><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="37"><a href="/docs/pattern/list-cn" data-reactid="38">列表</a></li><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="39"><a href="/docs/pattern/table-cn" data-reactid="40">表格</a></li><li style="padding-left:24px;" class="ant-menu-item-selected ant-menu-item" role="menuitem" aria-selected="true" data-reactid="41"><a href="/docs/pattern/complex-table-cn" data-reactid="42">表格：复杂数据</a></li><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="43"><a href="/docs/pattern/advanced-search-cn" data-reactid="44">高级搜索</a></li></ul></div><div class="main-container ant-col-xs-24 ant-col-sm-24 ant-col-md-18 ant-col-lg-20" data-reactid="45"><article class="markdown" data-reactid="46"><h1 data-reactid="47"><!-- react-text: 48 -->表格：复杂数据<!-- /react-text --><!-- react-empty: 49 --></h1><section class="markdown" data-reactid="50"><p data-reactid="51"><!-- react-text: 52 -->表格也用于展示复杂和高度结构化数据。<!-- /react-text --></p></section><section class="toc" data-reactid="53"><ul data-reactid="54"><li data-reactid="55"><a class="bisheng-toc-h2" href="#案例" title="案例" data-reactid="56"><!-- react-text: 57 -->案例<!-- /react-text --></a></li></ul></section><section class="markdown" data-reactid="58"><h2 id="案例" data-reactid="59"><span data-reactid="60"><!-- react-text: 61 -->案例<!-- /react-text --></span><a href="#案例" class="anchor" data-reactid="62">#</a></h2><h3 id="多列数据" data-reactid="63"><span data-reactid="64"><!-- react-text: 65 -->多列数据<!-- /react-text --></span><a href="#多列数据" class="anchor" data-reactid="66">#</a></h3><div class="preview-image-boxes clearfix" data-reactid="67"><div class="preview-image-box" data-reactid="68"><div class="preview-image-wrapper" data-reactid="69"><img class="preview-img" src="https://os.alipayobjects.com/rmsportal/QZGYpJVtsTwFPmj.png" alt="多列数据示例" data-reactid="70"/></div><div class="preview-image-title" data-reactid="71">多列数据示例</div><div class="preview-image-description" data-reactid="72"></div><!-- react-empty: 73 --></div></div><p data-reactid="74"><!-- react-text: 75 -->通过按钮，可实现更多列数据的加载以及左右切换。<!-- /react-text --></p><p data-reactid="76"><br data-reactid="77"/></p><div class="preview-image-boxes clearfix" data-reactid="78"><div class="preview-image-box" data-reactid="79"><div class="preview-image-wrapper" data-reactid="80"><img class="preview-img" src="https://os.alipayobjects.com/rmsportal/zWUjQRpJZhYsZbY.png" alt="自定义列示例" data-reactid="81"/></div><div class="preview-image-title" data-reactid="82">自定义列示例</div><div class="preview-image-description" data-reactid="83"></div><!-- react-empty: 84 --></div></div><p data-reactid="85"><!-- react-text: 86 -->提供用户自定义列的功能，方便用户查看需要的列。<!-- /react-text --></p><p data-reactid="87"><br data-reactid="88"/></p><div class="preview-image-boxes clearfix" data-reactid="89"><div class="preview-image-box" data-reactid="90"><div class="preview-image-wrapper" data-reactid="91"><img class="preview-img" src="https://os.alipayobjects.com/rmsportal/UOTwZLweENvwlnL.png" alt="横向滚动示例" data-reactid="92"/></div><div class="preview-image-title" data-reactid="93">横向滚动示例</div><div class="preview-image-description" data-reactid="94"></div><!-- react-empty: 95 --></div></div><p data-reactid="96"><!-- react-text: 97 -->固定表头列，通过横向滚动条来查看剩余内容。<!-- /react-text --></p><h3 id="带图标的表格" data-reactid="98"><span data-reactid="99"><!-- react-text: 100 -->带图标的表格<!-- /react-text --></span><a href="#带图标的表格" class="anchor" data-reactid="101">#</a></h3><div class="preview-image-boxes clearfix" data-reactid="102"><div class="preview-image-box" data-reactid="103"><div class="preview-image-wrapper" data-reactid="104"><img class="preview-img" src="https://os.alipayobjects.com/rmsportal/OWEXWoGlsqyhVBB.png" alt="带图标表格示例" data-reactid="105"/></div><div class="preview-image-title" data-reactid="106">带图标表格示例</div><div class="preview-image-description" data-reactid="107"></div><!-- react-empty: 108 --></div></div><p data-reactid="109"><!-- react-text: 110 -->通过图标强化信息的传递，适用在表达数据变化趋势。<!-- /react-text --></p><h3 id="带图表的表格" data-reactid="111"><span data-reactid="112"><!-- react-text: 113 -->带图表的表格<!-- /react-text --></span><a href="#带图表的表格" class="anchor" data-reactid="114">#</a></h3><div class="preview-image-boxes clearfix" data-reactid="115"><div class="preview-image-box" data-reactid="116"><div class="preview-image-wrapper" data-reactid="117"><img class="preview-img" src="https://os.alipayobjects.com/rmsportal/znVwTXxQpXuVqPl.png" alt="带图表表格示例" data-reactid="118"/></div><div class="preview-image-title" data-reactid="119">带图表表格示例</div><div class="preview-image-description" data-reactid="120"></div><!-- react-empty: 121 --></div></div><p data-reactid="122"><!-- react-text: 123 -->通过图表来强化信息的传递，适用在表达数据变化趋势。<!-- /react-text --></p><h3 id="二维表格" data-reactid="124"><span data-reactid="125"><!-- react-text: 126 -->二维表格<!-- /react-text --></span><a href="#二维表格" class="anchor" data-reactid="127">#</a></h3><div class="preview-image-boxes clearfix" data-reactid="128"><div class="preview-image-box" data-reactid="129"><div class="preview-image-wrapper" data-reactid="130"><img class="preview-img" src="https://os.alipayobjects.com/rmsportal/RQvqwEkXpHaFago.png" alt="二维表格示例" data-reactid="131"/></div><div class="preview-image-title" data-reactid="132">二维表格示例</div><div class="preview-image-description" data-reactid="133"></div><!-- react-empty: 134 --></div></div><p data-reactid="135"><!-- react-text: 136 -->横向和纵向各一个标题来展现数据。<!-- /react-text --></p><h3 id="小表格" data-reactid="137"><span data-reactid="138"><!-- react-text: 139 -->小表格<!-- /react-text --></span><a href="#小表格" class="anchor" data-reactid="140">#</a></h3><div class="preview-image-boxes clearfix" data-reactid="141"><div class="preview-image-box" data-reactid="142"><div class="preview-image-wrapper" data-reactid="143"><img class="preview-img" src="https://os.alipayobjects.com/rmsportal/dMxxUThciHFQyXS.png" alt="小表格示例" data-reactid="144"/></div><div class="preview-image-title" data-reactid="145">小表格示例</div><div class="preview-image-description" data-reactid="146"></div><!-- react-empty: 147 --></div></div><p data-reactid="148"><!-- react-text: 149 -->适用在卡片、弹出框等空间较小的场景中。<!-- /react-text --></p></section><section class="markdown api-container" data-reactid="150"></section></article></div></div><div class="ant-row" data-reactid="151"><div class="ant-col-xs-24 ant-col-sm-24 ant-col-md-18 ant-col-md-offset-6 ant-col-lg-20 ant-col-lg-offset-4" data-reactid="152"><section class="prev-next-nav" data-reactid="153"><a class="prev-page" href="/docs/pattern/table-cn" data-reactid="154">表格</a><a class="next-page" href="/docs/pattern/advanced-search-cn" data-reactid="155">高级搜索</a></section></div></div></div><footer id="footer" data-reactid="156"><ul data-reactid="157"><li data-reactid="158"></li><li data-reactid="159"></li><li data-reactid="160"></li><li data-reactid="161"><h2 data-reactid="162"><!-- react-text: 163 -->Ant Design Copyright © <!-- /react-text --><!-- react-text: 164 -->2017<!-- /react-text --></h2><h2 data-reactid="165"><!-- react-text: 166 -->Photon Copyright © <!-- /react-text --><!-- react-text: 167 -->2017<!-- /react-text --></h2></li></ul></footer></div>
+    </div>
+    
+      
+        <script src="https://as.alipayobjects.com/g/component/??react/15.6.1/react.min.js,react/15.6.1/react-dom.min.js"></script>
+      
+    
+    <script src="/common.js"></script>
+    <script src="/index.js"></script>
+  </body>
+</html>

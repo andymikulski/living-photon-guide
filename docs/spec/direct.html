@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="An enterprise-class UI design language and React-based implementation with a set of high-quality React components, one of best React UI library for enterprises">
+    <title>Photon Ant Design</title>
+    <script>
+    (function() {
+      function isLocalStorageNameSupported() {
+        var testKey = 'test';
+        var storage = window.localStorage;
+        try {
+          storage.setItem(testKey, '1');
+          storage.removeItem(testKey);
+          return true;
+        } catch (error) {
+          return false;
+        }
+      }
+      // 优先级提高到所有静态资源的前面，语言不对，加载其他静态资源没意义
+      var pathname = location.pathname;
+
+      function isZhCN(pathname) {
+        return /-cn\/?$/.test(pathname);
+      }
+      function getLocalizedPathname(path, zhCN) {
+        var pathname = path.startsWith('/') ? path : '/' + path;
+        if (!zhCN) { // to enUS
+          return /\/?index-cn/.test(pathname) ? '/' : pathname.replace('-cn', '');
+        } else if (pathname === '/') {
+          return '/index-cn';
+        } else if (pathname.endsWith('/')) {
+          return pathname.replace(/\/$/, '-cn/');
+        }
+        return pathname + '-cn';
+      }
+
+      // 兼容旧的 URL， `?locale=...`
+      var queryString = location.search;
+      if (queryString) {
+        var isZhCNConfig = queryString.indexOf('zh-CN') > -1;
+        if (isZhCNConfig && !isZhCN(pathname)) {
+          location.pathname = getLocalizedPathname(pathname, isZhCNConfig)
+        }
+      }
+
+      // 首页无视链接里面的语言设置 https://github.com/ant-design/ant-design/issues/4552
+      if (isLocalStorageNameSupported() && (pathname === '/' || pathname === '/index-cn')) {
+        var lang = (window.localStorage && localStorage.getItem('locale')) || (navigator.language.toLowerCase() === 'zh-cn' ? 'zh-CN' : 'en-US');
+        // safari is 'zh-cn', while other browser is 'zh-CN';
+        if ((lang === 'zh-CN') !== isZhCN(pathname)) {
+          location.pathname = getLocalizedPathname(pathname, lang === 'zh-CN');
+        }
+      }
+      document.documentElement.className += isZhCN(pathname) ? 'zh-cn' : 'en-us';
+    })()
+    </script>
+    <link rel="icon" href="https://t.alipayobjects.com/images/T1QUBfXo4fXXXXXXXX.png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.cnpmjs.org/css?family=Lato:400,700|Raleway"/>
+    <link rel="stylesheet" type="text/css" href="/index-1.css"/>
+    <link rel="stylesheet" type="text/css" href="/index-2.css"/>
+    <link rel="stylesheet" type="text/css" href="/index-3.css"/>
+    <style id="nprogress-style">
+      #nprogress { display: none }
+    </style>
+    <!--[if lte IE 10]>
+      <script
+        src="https://as.alipayobjects.com/g/component/??console-polyfill/0.2.2/index.js,media-match/2.0.2/media.match.min.js"></script>
+    <![endif]-->
+    <script>
+    if (!window.Intl) {
+      document.writeln('<script src="https://as.alipayobjects.com/g/component/intl/1.0.1/??Intl.js,locale-data/jsonp/en.js,locale-data/jsonp/zh.js">' + '<' + '/script>');
+    }
+    if (!window.Promise) {
+      document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"' + '>' + '<' + '/' + 'script>');
+    }
+    </script>
+
+  </head>
+  <body>
+    <div id="react-content">
+      <div class="page-wrapper" data-reactroot="" data-reactid="1" data-react-checksum="1775345975"><header id="header" class="clearfix" data-reactid="2"><div class="ant-row" data-reactid="3"><div class="ant-col-xs-24 ant-col-sm-24 ant-col-md-5 ant-col-lg-4" data-reactid="4"><a id="logo" href="/" data-reactid="5"><span data-reactid="6">Photon Ant</span></a></div><div class="ant-col-xs-0 ant-col-sm-0 ant-col-md-19 ant-col-lg-20" data-reactid="7"><div id="search-box" data-reactid="8"><div class="ant-select-show-search ant-select-auto-complete ant-select ant-select-combobox ant-select-enabled" data-reactid="9"><div class="ant-select-selection
+            ant-select-selection--single" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-expanded="false" data-reactid="10"><div class="ant-select-selection__rendered" data-reactid="11"><div style="display:block;user-select:none;-webkit-user-select:none;" unselectable="unselectable" class="ant-select-selection__placeholder" data-reactid="12">Search Components...</div><ul data-reactid="13"><li class="ant-select-search ant-select-search--inline" data-reactid="14"><div class="ant-select-search__field__wrap" data-reactid="15"><input type="text" value="" class="ant-input ant-select-search__field" data-reactid="16"/><span class="ant-select-search__field__mirror" data-reactid="17"><!-- react-text: 18 --><!-- /react-text --><!-- react-text: 19 --> <!-- /react-text --></span></div></li></ul></div><span class="ant-select-arrow" style="user-select:none;-webkit-user-select:none;" unselectable="unselectable" data-reactid="20"><b data-reactid="21"></b></span></div></div></div><ul class="ant-menu ant-menu-horizontal ant-menu-light ant-menu-root" role="menu" aria-activedescendant="" id="nav" tabindex="0" data-reactid="22"><li class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="23"><a href="/" data-reactid="24"><span data-reactid="25">Home</span></a></li><li class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="26"><a href="/docs/react/introduce" data-reactid="27"><span data-reactid="28">Components</span></a></li></ul></div></div></header><div class="main-wrapper" data-reactid="29"><div class="ant-row" data-reactid="30"><div class="ant-col-xs-24 ant-col-sm-24 ant-col-md-6 ant-col-lg-4" data-reactid="31"><ul class="ant-menu ant-menu-inline aside-container ant-menu-light ant-menu-root" role="menu" aria-activedescendant="" tabindex="0" data-reactid="32"><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="33"><a href="/docs/spec/introduce" data-reactid="34">Ant Design</a></li><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="35"><a href="/docs/spec/feature" data-reactid="36">Features</a></li><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="37"><a href="/docs/spec/cases" data-reactid="38">Cases</a></li><li class="ant-menu-submenu-inline ant-menu-submenu-open ant-menu-submenu-selected ant-menu-submenu" data-reactid="39"><div style="padding-left:24px;" class="ant-menu-submenu-title" aria-expanded="true" aria-owns="Principles$Menu" aria-haspopup="true" data-reactid="40"><h4 data-reactid="41">Principles</h4></div><ul class="ant-menu ant-menu-inline  ant-menu-sub" role="menu" aria-activedescendant="" id="Principles$Menu" data-reactid="42"><li style="padding-left:48px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="43"><a href="/docs/spec/proximity" data-reactid="44">Proximity</a></li><li style="padding-left:48px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="45"><a href="/docs/spec/alignment" data-reactid="46">Alignment</a></li><li style="padding-left:48px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="47"><a href="/docs/spec/contrast" data-reactid="48">Contrast</a></li><li style="padding-left:48px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="49"><a href="/docs/spec/repetition" data-reactid="50">Repetition</a></li><li style="padding-left:48px;" class="ant-menu-item-selected ant-menu-item" role="menuitem" aria-selected="true" data-reactid="51"><a href="/docs/spec/direct" data-reactid="52">Make it Direct</a></li><li style="padding-left:48px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="53"><a href="/docs/spec/stay" data-reactid="54">Stay on the Page</a></li><li style="padding-left:48px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="55"><a href="/docs/spec/lightweight" data-reactid="56">Keep it Lightweight</a></li><li style="padding-left:48px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="57"><a href="/docs/spec/invitation" data-reactid="58">Provide an Invitation</a></li><li style="padding-left:48px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="59"><a href="/docs/spec/transition" data-reactid="60">Use Transition</a></li><li style="padding-left:48px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="61"><a href="/docs/spec/reaction" data-reactid="62">React Immediately</a></li></ul></li><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="63"><a href="/docs/spec/colors" data-reactid="64">Colors</a></li><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="65"><a href="/docs/spec/icon" data-reactid="66">Icons</a></li><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="67"><a href="/docs/spec/font" data-reactid="68">Font</a></li><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="69"><a href="/docs/spec/copywriting" data-reactid="70">Copywriting</a></li><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="71"><a href="/docs/spec/layout" data-reactid="72">Layout</a></li><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="73"><a href="/docs/spec/navigation" data-reactid="74">Navigation</a></li><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="75"><a href="/docs/spec/data-entry" data-reactid="76">Data Entry</a></li><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="77"><a href="/docs/spec/data-display" data-reactid="78">Data Display</a></li><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="79"><a href="/docs/spec/feedback" data-reactid="80">Feedback</a></li><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="81"><a href="http://motion.ant.design" target="_blank" rel="noopener noreferrer" class="menu-item-link-outside" data-reactid="82"><!-- react-text: 83 -->Motion<!-- /react-text --><!-- react-text: 84 --> <!-- /react-text --><i class="anticon anticon-export" data-reactid="85"></i></a></li></ul></div><div class="main-container ant-col-xs-24 ant-col-sm-24 ant-col-md-18 ant-col-lg-20" data-reactid="86"><article class="markdown" data-reactid="87"><h1 data-reactid="88"><!-- react-text: 89 -->Make it Direct<!-- /react-text --><!-- react-empty: 90 --></h1><section class="markdown" data-reactid="91"><p data-reactid="92"><!-- react-text: 93 -->As Alan Cooper states：『Where there is output, let there be input』. This is the principle of direct manipulation. eg：Instead of editing content on a separate page, do it directly in context.<!-- /react-text --></p></section><section class="toc" data-reactid="94"><ul data-reactid="95"><li data-reactid="96"><a class="bisheng-toc-h2" href="#In-Page-Editing" title="In-Page Editing" data-reactid="97"><!-- react-text: 98 -->In-Page Editing<!-- /react-text --></a></li><li data-reactid="99"><a class="bisheng-toc-h2" href="#Drag-and-Drop" title="Drag and Drop" data-reactid="100"><!-- react-text: 101 -->Drag and Drop<!-- /react-text --></a></li></ul></section><section class="markdown" data-reactid="102"><h2 id="In-Page-Editing" data-reactid="103"><span data-reactid="104"><!-- react-text: 105 -->In-Page Editing<!-- /react-text --></span><a href="#In-Page-Editing" class="anchor" data-reactid="106">#</a></h2><div class="preview-image-boxes clearfix" data-reactid="107"><div class="preview-image-box" data-reactid="108"><div class="preview-image-wrapper" data-reactid="109"><img class="preview-img" src="https://os.alipayobjects.com/rmsportal/PmVuUUKeamHdveT.png" alt="Example of click to edit" data-reactid="110"/></div><div class="preview-image-title" data-reactid="111">Example of click to edit</div><div class="preview-image-description" data-reactid="112">Status 1: Common browsing mode, do not distinguish between editable  and  non-editable lines；<br>Status 2: On mouse hover, the background is backlit with yellow. A tool tip invites the user to “Click to edit”；<br>Status 3: Once the user clicks on the title, the form elements 『Input box』, 『Ok』 and 『Cancel』 appear, and the cursor is positioned in the 『input box』.</div><!-- react-empty: 113 --></div></div><p data-reactid="114"><!-- react-text: 115 -->Single-Field Inline Edit<!-- /react-text --></p><p data-reactid="116"><!-- react-text: 117 -->If 『readability』 is more important than 『editability』, 『click to edit』 can be used.<!-- /react-text --></p><p data-reactid="118"><br data-reactid="119"/></p><div class="preview-image-boxes clearfix" data-reactid="120"><div class="preview-image-box" data-reactid="121"><div class="preview-image-wrapper" data-reactid="122"><img class="preview-img" src="https://os.alipayobjects.com/rmsportal/ZmRlahliUbCurhu.png" alt="Example of Text link/Icon Edit" data-reactid="123"/></div><div class="preview-image-title" data-reactid="124">Example of Text link/Icon Edit</div><div class="preview-image-description" data-reactid="125">Status 1: Text link/icon appears near the editable line.；<br>Status 2: Once the mouse clicks 『edit』,the form elements 『Input box』, 『Ok』 and 『Cancel』 appear, and the cursor is positioned in the 『input box』.
+</div><!-- react-empty: 126 --></div></div><p data-reactid="127"><!-- react-text: 128 -->If the priority is given to 『readability』 and the 『editability』 of operation lines need to be highlighted at the same time, 『text link/icon edit』can be used.<!-- /react-text --></p><p data-reactid="129"><br data-reactid="130"/></p><div class="preview-image-boxes clearfix" data-reactid="131"><div class="preview-image-box" data-reactid="132"><div class="preview-image-wrapper" data-reactid="133"><img class="preview-img" src="https://os.alipayobjects.com/rmsportal/hGXGErepBnrwqzj.png" alt="Example of Multi-Field Inline Edit" data-reactid="134"/></div><div class="preview-image-title" data-reactid="135">Example of Multi-Field Inline Edit</div><div class="preview-image-description" data-reactid="136">Edit mode without destroying integrity can enlarge the space in order to put down the 『Input box』 and other form elements. Besides, when switching the edit mode in the Table, it is necessary to ensure that each column does not beat.</div><!-- react-empty: 137 --></div></div><p data-reactid="138"><!-- react-text: 139 -->Multi-Field Inline Edit<!-- /react-text --></p><blockquote data-reactid="140"><p data-reactid="141"><!-- react-text: 142 -->Note：In『Multi-Field Inline Edit』，there are huge different between the content and required field，So it is more needed to use the <!-- /react-text --><a href="../docs/spec/transition#解释刚刚发生了什么" data-reactid="143">『Explain What Just Happened』</a><!-- react-text: 144 --> in 『Use Transition』to eliminate this visual effects.<!-- /react-text --></p></blockquote><p data-reactid="145"><br data-reactid="146"/></p><p data-reactid="147"><!-- react-text: 148 -->More mode of 『In-page Edit』 ，please visit <!-- /react-text --><a href="/docs/pattern/table#模块编辑" data-reactid="149">『Mode／Table／Interaction』</a></p><p data-reactid="150"><br data-reactid="151"/></p><hr data-reactid="152"/><h2 id="Drag-and-Drop" data-reactid="153"><span data-reactid="154"><!-- react-text: 155 -->Drag and Drop<!-- /react-text --></span><a href="#Drag-and-Drop" class="anchor" data-reactid="156">#</a></h2><div class="preview-image-boxes clearfix" data-reactid="157"><div class="preview-image-box" data-reactid="158"><div class="preview-image-wrapper" data-reactid="159"><img class="preview-img" src="https://os.alipayobjects.com/rmsportal/DjMFcqSxZrulbGF.png" alt="Example of Drag and Drop List" data-reactid="160"/></div><div class="preview-image-title" data-reactid="161">Example of Drag and Drop List</div><div class="preview-image-description" data-reactid="162">Status 1: On mouse hover,a removable 『icon』 appears.；<br>Status 2： When hovering over the 『icon』，the pointer changes into a 『hand』， click-and-drag operation can be used；<br>Status 3：Drag  target to the placeable block. When  blue stroke appears, inform  user that object can be placed in the block.</div><!-- react-empty: 163 --></div></div><p data-reactid="164"><!-- react-text: 165 -->Drag and Drop List<!-- /react-text --></p><p data-reactid="166"><!-- react-text: 167 -->Drag and Drop can only limited in one dimension（upper/down or left/right）<!-- /react-text --></p><p data-reactid="168"><br data-reactid="169"/></p><div class="preview-image-boxes clearfix" data-reactid="170"><div class="preview-image-box" data-reactid="171"><div class="preview-image-wrapper" data-reactid="172"><img class="preview-img" src="https://os.alipayobjects.com/rmsportal/KVhqdSoLUjXPXuN.png" alt="Example of Drag and Drop picture/file" data-reactid="173"/></div><div class="preview-image-title" data-reactid="174">Example of Drag and Drop picture/file</div><div class="preview-image-description" data-reactid="175"></div><!-- react-empty: 176 --></div></div><p data-reactid="177"><!-- react-text: 178 -->Drag and Drop picture/file<!-- /react-text --></p><p data-reactid="179"><br data-reactid="180"/></p></section><section class="markdown api-container" data-reactid="181"></section></article></div></div><div class="ant-row" data-reactid="182"><div class="ant-col-xs-24 ant-col-sm-24 ant-col-md-18 ant-col-md-offset-6 ant-col-lg-20 ant-col-lg-offset-4" data-reactid="183"><section class="prev-next-nav" data-reactid="184"><a class="prev-page" href="/docs/spec/repetition" data-reactid="185">Repetition</a><a class="next-page" href="/docs/spec/stay" data-reactid="186">Stay on the Page</a></section></div></div></div><footer id="footer" data-reactid="187"><ul data-reactid="188"><li data-reactid="189"></li><li data-reactid="190"></li><li data-reactid="191"></li><li data-reactid="192"><h2 data-reactid="193"><!-- react-text: 194 -->Ant Design Copyright © <!-- /react-text --><!-- react-text: 195 -->2017<!-- /react-text --></h2><h2 data-reactid="196"><!-- react-text: 197 -->Photon Copyright © <!-- /react-text --><!-- react-text: 198 -->2017<!-- /react-text --></h2></li></ul></footer></div>
+    </div>
+    
+      
+        <script src="https://as.alipayobjects.com/g/component/??react/15.6.1/react.min.js,react/15.6.1/react-dom.min.js"></script>
+      
+    
+    <script src="/common.js"></script>
+    <script src="/index.js"></script>
+  </body>
+</html>

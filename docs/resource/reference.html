@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="An enterprise-class UI design language and React-based implementation with a set of high-quality React components, one of best React UI library for enterprises">
+    <title>Photon Ant Design</title>
+    <script>
+    (function() {
+      function isLocalStorageNameSupported() {
+        var testKey = 'test';
+        var storage = window.localStorage;
+        try {
+          storage.setItem(testKey, '1');
+          storage.removeItem(testKey);
+          return true;
+        } catch (error) {
+          return false;
+        }
+      }
+      // 优先级提高到所有静态资源的前面，语言不对，加载其他静态资源没意义
+      var pathname = location.pathname;
+
+      function isZhCN(pathname) {
+        return /-cn\/?$/.test(pathname);
+      }
+      function getLocalizedPathname(path, zhCN) {
+        var pathname = path.startsWith('/') ? path : '/' + path;
+        if (!zhCN) { // to enUS
+          return /\/?index-cn/.test(pathname) ? '/' : pathname.replace('-cn', '');
+        } else if (pathname === '/') {
+          return '/index-cn';
+        } else if (pathname.endsWith('/')) {
+          return pathname.replace(/\/$/, '-cn/');
+        }
+        return pathname + '-cn';
+      }
+
+      // 兼容旧的 URL， `?locale=...`
+      var queryString = location.search;
+      if (queryString) {
+        var isZhCNConfig = queryString.indexOf('zh-CN') > -1;
+        if (isZhCNConfig && !isZhCN(pathname)) {
+          location.pathname = getLocalizedPathname(pathname, isZhCNConfig)
+        }
+      }
+
+      // 首页无视链接里面的语言设置 https://github.com/ant-design/ant-design/issues/4552
+      if (isLocalStorageNameSupported() && (pathname === '/' || pathname === '/index-cn')) {
+        var lang = (window.localStorage && localStorage.getItem('locale')) || (navigator.language.toLowerCase() === 'zh-cn' ? 'zh-CN' : 'en-US');
+        // safari is 'zh-cn', while other browser is 'zh-CN';
+        if ((lang === 'zh-CN') !== isZhCN(pathname)) {
+          location.pathname = getLocalizedPathname(pathname, lang === 'zh-CN');
+        }
+      }
+      document.documentElement.className += isZhCN(pathname) ? 'zh-cn' : 'en-us';
+    })()
+    </script>
+    <link rel="icon" href="https://t.alipayobjects.com/images/T1QUBfXo4fXXXXXXXX.png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.cnpmjs.org/css?family=Lato:400,700|Raleway"/>
+    <link rel="stylesheet" type="text/css" href="/index-1.css"/>
+    <link rel="stylesheet" type="text/css" href="/index-2.css"/>
+    <link rel="stylesheet" type="text/css" href="/index-3.css"/>
+    <style id="nprogress-style">
+      #nprogress { display: none }
+    </style>
+    <!--[if lte IE 10]>
+      <script
+        src="https://as.alipayobjects.com/g/component/??console-polyfill/0.2.2/index.js,media-match/2.0.2/media.match.min.js"></script>
+    <![endif]-->
+    <script>
+    if (!window.Intl) {
+      document.writeln('<script src="https://as.alipayobjects.com/g/component/intl/1.0.1/??Intl.js,locale-data/jsonp/en.js,locale-data/jsonp/zh.js">' + '<' + '/script>');
+    }
+    if (!window.Promise) {
+      document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"' + '>' + '<' + '/' + 'script>');
+    }
+    </script>
+
+  </head>
+  <body>
+    <div id="react-content">
+      <div class="page-wrapper" data-reactroot="" data-reactid="1" data-react-checksum="-575671572"><header id="header" class="clearfix" data-reactid="2"><div class="ant-row" data-reactid="3"><div class="ant-col-xs-24 ant-col-sm-24 ant-col-md-5 ant-col-lg-4" data-reactid="4"><a id="logo" href="/" data-reactid="5"><span data-reactid="6">Photon Ant</span></a></div><div class="ant-col-xs-0 ant-col-sm-0 ant-col-md-19 ant-col-lg-20" data-reactid="7"><div id="search-box" data-reactid="8"><div class="ant-select-show-search ant-select-auto-complete ant-select ant-select-combobox ant-select-enabled" data-reactid="9"><div class="ant-select-selection
+            ant-select-selection--single" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-expanded="false" data-reactid="10"><div class="ant-select-selection__rendered" data-reactid="11"><div style="display:block;user-select:none;-webkit-user-select:none;" unselectable="unselectable" class="ant-select-selection__placeholder" data-reactid="12">Search Components...</div><ul data-reactid="13"><li class="ant-select-search ant-select-search--inline" data-reactid="14"><div class="ant-select-search__field__wrap" data-reactid="15"><input type="text" value="" class="ant-input ant-select-search__field" data-reactid="16"/><span class="ant-select-search__field__mirror" data-reactid="17"><!-- react-text: 18 --><!-- /react-text --><!-- react-text: 19 --> <!-- /react-text --></span></div></li></ul></div><span class="ant-select-arrow" style="user-select:none;-webkit-user-select:none;" unselectable="unselectable" data-reactid="20"><b data-reactid="21"></b></span></div></div></div><ul class="ant-menu ant-menu-horizontal ant-menu-light ant-menu-root" role="menu" aria-activedescendant="" id="nav" tabindex="0" data-reactid="22"><li class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="23"><a href="/" data-reactid="24"><span data-reactid="25">Home</span></a></li><li class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="26"><a href="/docs/react/introduce" data-reactid="27"><span data-reactid="28">Components</span></a></li></ul></div></div></header><div class="main-wrapper" data-reactid="29"><div class="ant-row" data-reactid="30"><div class="ant-col-xs-24 ant-col-sm-24 ant-col-md-6 ant-col-lg-4" data-reactid="31"><ul class="ant-menu ant-menu-inline aside-container ant-menu-light ant-menu-root" role="menu" aria-activedescendant="" tabindex="0" data-reactid="32"><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="33"><a href="/docs/resource/download" data-reactid="34">Download</a></li><li style="padding-left:24px;" class="ant-menu-item-selected ant-menu-item" role="menuitem" aria-selected="true" data-reactid="35"><a href="/docs/resource/reference" data-reactid="36">Reference</a></li><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="37"><a href="//github.com/ant-design/ant-design" target="_blank" rel="noopener noreferrer" class="menu-item-link-outside" data-reactid="38"><!-- react-text: 39 -->GitHub<!-- /react-text --><!-- react-text: 40 --> <!-- /react-text --><i class="anticon anticon-export" data-reactid="41"></i></a></li></ul></div><div class="main-container ant-col-xs-24 ant-col-sm-24 ant-col-md-18 ant-col-lg-20" data-reactid="42"><article class="markdown" data-reactid="43"><h1 data-reactid="44"><!-- react-text: 45 -->Reference<!-- /react-text --><!-- react-empty: 46 --></h1><section class="markdown" data-reactid="47"><p data-reactid="48"><!-- react-text: 49 -->Please find below the books that inspired us, saved our time and helped us to overcome difficulties when designing components and patterns. If you want to know more about UI design, we recommend you these awesome books.<!-- /react-text --></p><div class="resource-cards" data-reactid="50"><a target="_blank" href="http://as.wiley.com/WileyCDA/WileyTitle/productCd-1118766571.html" class="resource-card" data-reactid="51"><img src="http://media.wiley.com/product_data/coverImage300/71/11187665/1118766571.jpg" data-reactid="52"/><span class="resource-card-content" data-reactid="53"><span class="resource-card-title" data-reactid="54"><!-- react-text: 55 -->About Face<!-- /react-text --></span><span class="resource-card-description" data-reactid="56"><!-- react-text: 57 -->Author: Alan Cooper, Robert Reimann, David Cronin, Christopher Noessel<!-- /react-text --></span><span class="resource-card-description" data-reactid="58"><!-- react-text: 59 -->Publisher: Wiley<!-- /react-text --></span></span></a><a target="_blank" href="http://shop.oreilly.com/product/9780596516253.do" class="resource-card" data-reactid="60"><img src="http://akamaicovers.oreilly.com/images/9780596516253/cat.gif" data-reactid="61"/><span class="resource-card-content" data-reactid="62"><span class="resource-card-title" data-reactid="63"><!-- react-text: 64 -->Designing Web Interfaces<!-- /react-text --></span><span class="resource-card-description" data-reactid="65"><!-- react-text: 66 -->Author: Bill Scott, Theresa Neil<!-- /react-text --></span><span class="resource-card-description" data-reactid="67"><!-- react-text: 68 -->Publisher: O&#x27;Reilly Media<!-- /react-text --></span></span></a><a target="_blank" href="http://shop.oreilly.com/product/0636920000556.do" class="resource-card" data-reactid="69"><img src="http://akamaicovers.oreilly.com/images/0636920000556/cat.gif" data-reactid="70"/><span class="resource-card-content" data-reactid="71"><span class="resource-card-title" data-reactid="72"><!-- react-text: 73 -->Designing Interfaces<!-- /react-text --></span><span class="resource-card-description" data-reactid="74"><!-- react-text: 75 -->Author: Jenifer Tidwell<!-- /react-text --></span><span class="resource-card-description" data-reactid="76"><!-- react-text: 77 -->Publisher: O&#x27;Reilly Media<!-- /react-text --></span></span></a><a target="_blank" href="http://www.peachpit.com/store/non-designers-design-book-9780133966152" class="resource-card" data-reactid="78"><img src="http://www.peachpit.com/ShowCover.aspx?isbn=9780133966152&amp;type=f" data-reactid="79"/><span class="resource-card-content" data-reactid="80"><span class="resource-card-title" data-reactid="81"><!-- react-text: 82 -->Non-Designer&#x27;s Design Book<!-- /react-text --></span><span class="resource-card-description" data-reactid="83"><!-- react-text: 84 -->Author: Robin Williams<!-- /react-text --></span><span class="resource-card-description" data-reactid="85"><!-- react-text: 86 -->Publisher: Peachpit Press<!-- /react-text --></span></span></a><a target="_blank" href="http://www.jnd.org/books/design-of-everyday-things-revised.html" class="resource-card" data-reactid="87"><img src="http://www.jnd.org/assets/images/the-design-of-everyday-things2.jpg" data-reactid="88"/><span class="resource-card-content" data-reactid="89"><span class="resource-card-title" data-reactid="90"><!-- react-text: 91 -->The Design of Everyday Things<!-- /react-text --></span><span class="resource-card-description" data-reactid="92"><!-- react-text: 93 -->Author: Don Norman<!-- /react-text --></span><span class="resource-card-description" data-reactid="94"><!-- react-text: 95 -->Publisher: Basic Books, A Member of the Perseus Books Group<!-- /react-text --></span></span></a><a target="_blank" href="https://www.amazon.com/Emotional-Design-Love-Everyday-Things/dp/0465051367" class="resource-card" data-reactid="96"><img src="https://images-na.ssl-images-amazon.com/images/I/41tEBlukEtL._SX328_BO1,204,203,200_.jpg" data-reactid="97"/><span class="resource-card-content" data-reactid="98"><span class="resource-card-title" data-reactid="99"><!-- react-text: 100 -->Emotional Design<!-- /react-text --></span><span class="resource-card-description" data-reactid="101"><!-- react-text: 102 -->Author: Don Norman<!-- /react-text --></span><span class="resource-card-description" data-reactid="103"><!-- react-text: 104 -->Publisher: Basic Books, A Member of the Perseus Books Group<!-- /react-text --></span></span></a><a target="_blank" href="http://rosenfeldmedia.com/books/web-form-design/" class="resource-card" data-reactid="105"><img src="http://rosenfeldmedia.com/wp-content/uploads/2014/11/2456180445_932e3749f4_o-640x960.jpg" data-reactid="106"/><span class="resource-card-content" data-reactid="107"><span class="resource-card-title" data-reactid="108"><!-- react-text: 109 -->Web Form Design<!-- /react-text --></span><span class="resource-card-description" data-reactid="110"><!-- react-text: 111 -->Author: Luke Wroblewski<!-- /react-text --></span><span class="resource-card-description" data-reactid="112"><!-- react-text: 113 -->Publisher: Rosenfeld Media<!-- /react-text --></span></span></a></div></section><section class="markdown api-container" data-reactid="114"></section></article></div></div><div class="ant-row" data-reactid="115"><div class="ant-col-xs-24 ant-col-sm-24 ant-col-md-18 ant-col-md-offset-6 ant-col-lg-20 ant-col-lg-offset-4" data-reactid="116"><section class="prev-next-nav" data-reactid="117"><a class="prev-page" href="/docs/resource/download" data-reactid="118">Download</a><a href="//github.com/ant-design/ant-design" target="_blank" rel="noopener noreferrer" class="next-page" data-reactid="119"><!-- react-text: 120 -->GitHub<!-- /react-text --><!-- react-text: 121 --> <!-- /react-text --><i class="anticon anticon-export" data-reactid="122"></i></a></section></div></div></div><footer id="footer" data-reactid="123"><ul data-reactid="124"><li data-reactid="125"></li><li data-reactid="126"></li><li data-reactid="127"></li><li data-reactid="128"><h2 data-reactid="129"><!-- react-text: 130 -->Ant Design Copyright © <!-- /react-text --><!-- react-text: 131 -->2017<!-- /react-text --></h2><h2 data-reactid="132"><!-- react-text: 133 -->Photon Copyright © <!-- /react-text --><!-- react-text: 134 -->2017<!-- /react-text --></h2></li></ul></footer></div>
+    </div>
+    
+      
+        <script src="https://as.alipayobjects.com/g/component/??react/15.6.1/react.min.js,react/15.6.1/react-dom.min.js"></script>
+      
+    
+    <script src="/common.js"></script>
+    <script src="/index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,1 @@
+webpackJsonp([95,206],{1274:function(t,e){t.exports={content:["article",["p","this is ",["strong","docs/react/introduce.en-US.md"]]],meta:{order:0,title:"Photon-styled Ant Design",filename:"docs/react/introduce.en-US.md"},toc:["ul"]}}});

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="An enterprise-class UI design language and React-based implementation with a set of high-quality React components, one of best React UI library for enterprises">
+    <title>Photon Ant Design</title>
+    <script>
+    (function() {
+      function isLocalStorageNameSupported() {
+        var testKey = 'test';
+        var storage = window.localStorage;
+        try {
+          storage.setItem(testKey, '1');
+          storage.removeItem(testKey);
+          return true;
+        } catch (error) {
+          return false;
+        }
+      }
+      // 优先级提高到所有静态资源的前面，语言不对，加载其他静态资源没意义
+      var pathname = location.pathname;
+
+      function isZhCN(pathname) {
+        return /-cn\/?$/.test(pathname);
+      }
+      function getLocalizedPathname(path, zhCN) {
+        var pathname = path.startsWith('/') ? path : '/' + path;
+        if (!zhCN) { // to enUS
+          return /\/?index-cn/.test(pathname) ? '/' : pathname.replace('-cn', '');
+        } else if (pathname === '/') {
+          return '/index-cn';
+        } else if (pathname.endsWith('/')) {
+          return pathname.replace(/\/$/, '-cn/');
+        }
+        return pathname + '-cn';
+      }
+
+      // 兼容旧的 URL， `?locale=...`
+      var queryString = location.search;
+      if (queryString) {
+        var isZhCNConfig = queryString.indexOf('zh-CN') > -1;
+        if (isZhCNConfig && !isZhCN(pathname)) {
+          location.pathname = getLocalizedPathname(pathname, isZhCNConfig)
+        }
+      }
+
+      // 首页无视链接里面的语言设置 https://github.com/ant-design/ant-design/issues/4552
+      if (isLocalStorageNameSupported() && (pathname === '/' || pathname === '/index-cn')) {
+        var lang = (window.localStorage && localStorage.getItem('locale')) || (navigator.language.toLowerCase() === 'zh-cn' ? 'zh-CN' : 'en-US');
+        // safari is 'zh-cn', while other browser is 'zh-CN';
+        if ((lang === 'zh-CN') !== isZhCN(pathname)) {
+          location.pathname = getLocalizedPathname(pathname, lang === 'zh-CN');
+        }
+      }
+      document.documentElement.className += isZhCN(pathname) ? 'zh-cn' : 'en-us';
+    })()
+    </script>
+    <link rel="icon" href="https://t.alipayobjects.com/images/T1QUBfXo4fXXXXXXXX.png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.cnpmjs.org/css?family=Lato:400,700|Raleway"/>
+    <link rel="stylesheet" type="text/css" href="/index-1.css"/>
+    <link rel="stylesheet" type="text/css" href="/index-2.css"/>
+    <link rel="stylesheet" type="text/css" href="/index-3.css"/>
+    <style id="nprogress-style">
+      #nprogress { display: none }
+    </style>
+    <!--[if lte IE 10]>
+      <script
+        src="https://as.alipayobjects.com/g/component/??console-polyfill/0.2.2/index.js,media-match/2.0.2/media.match.min.js"></script>
+    <![endif]-->
+    <script>
+    if (!window.Intl) {
+      document.writeln('<script src="https://as.alipayobjects.com/g/component/intl/1.0.1/??Intl.js,locale-data/jsonp/en.js,locale-data/jsonp/zh.js">' + '<' + '/script>');
+    }
+    if (!window.Promise) {
+      document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"' + '>' + '<' + '/' + 'script>');
+    }
+    </script>
+
+  </head>
+  <body>
+    <div id="react-content">
+      <div class="page-wrapper" data-reactroot="" data-reactid="1" data-react-checksum="-735901101"><header id="header" class="clearfix" data-reactid="2"><div class="ant-row" data-reactid="3"><div class="ant-col-xs-24 ant-col-sm-24 ant-col-md-5 ant-col-lg-4" data-reactid="4"><a id="logo" href="/index-cn" data-reactid="5"><span data-reactid="6">Photon Ant</span></a></div><div class="ant-col-xs-0 ant-col-sm-0 ant-col-md-19 ant-col-lg-20" data-reactid="7"><div id="search-box" data-reactid="8"><div class="ant-select-show-search ant-select-auto-complete ant-select ant-select-combobox ant-select-enabled" data-reactid="9"><div class="ant-select-selection
+            ant-select-selection--single" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-expanded="false" data-reactid="10"><div class="ant-select-selection__rendered" data-reactid="11"><div style="display:block;user-select:none;-webkit-user-select:none;" unselectable="unselectable" class="ant-select-selection__placeholder" data-reactid="12">搜索组件...</div><ul data-reactid="13"><li class="ant-select-search ant-select-search--inline" data-reactid="14"><div class="ant-select-search__field__wrap" data-reactid="15"><input type="text" value="" class="ant-input ant-select-search__field" data-reactid="16"/><span class="ant-select-search__field__mirror" data-reactid="17"><!-- react-text: 18 --><!-- /react-text --><!-- react-text: 19 --> <!-- /react-text --></span></div></li></ul></div><span class="ant-select-arrow" style="user-select:none;-webkit-user-select:none;" unselectable="unselectable" data-reactid="20"><b data-reactid="21"></b></span></div></div></div><ul class="ant-menu ant-menu-horizontal ant-menu-light ant-menu-root" role="menu" aria-activedescendant="" id="nav" tabindex="0" data-reactid="22"><li class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="23"><a href="/index-cn" data-reactid="24"><span data-reactid="25">首页</span></a></li><li class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="26"><a href="/docs/react/introduce-cn" data-reactid="27"><span data-reactid="28">组件</span></a></li></ul></div></div></header><div class="main-wrapper" data-reactid="29"><div class="ant-row" data-reactid="30"><div class="ant-col-xs-24 ant-col-sm-24 ant-col-md-6 ant-col-lg-4" data-reactid="31"><ul class="ant-menu ant-menu-inline aside-container ant-menu-light ant-menu-root" role="menu" aria-activedescendant="" tabindex="0" data-reactid="32"><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="33"><a href="/docs/pattern/navigation-cn" data-reactid="34">导航</a></li><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="35"><a href="/docs/pattern/form-cn" data-reactid="36">表单</a></li><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="37"><a href="/docs/pattern/list-cn" data-reactid="38">列表</a></li><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="39"><a href="/docs/pattern/table-cn" data-reactid="40">表格</a></li><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="41"><a href="/docs/pattern/complex-table-cn" data-reactid="42">表格：复杂数据</a></li><li style="padding-left:24px;" class="ant-menu-item-selected ant-menu-item" role="menuitem" aria-selected="true" data-reactid="43"><a href="/docs/pattern/advanced-search-cn" data-reactid="44">高级搜索</a></li></ul></div><div class="main-container ant-col-xs-24 ant-col-sm-24 ant-col-md-18 ant-col-lg-20" data-reactid="45"><article class="markdown" data-reactid="46"><h1 data-reactid="47"><!-- react-text: 48 -->高级搜索<!-- /react-text --><!-- react-empty: 49 --></h1><section class="markdown" data-reactid="50"><p data-reactid="51"><!-- react-text: 52 -->借助『高级搜索』，用户可以缩小复杂列表／表格等的展示范围。<!-- /react-text --></p></section><section class="toc" data-reactid="53"><ul data-reactid="54"><li data-reactid="55"><a class="bisheng-toc-h2" href="#常规型" title="常规型" data-reactid="56"><!-- react-text: 57 -->常规型<!-- /react-text --></a></li><li data-reactid="58"><a class="bisheng-toc-h2" href="#字段型" title="字段型" data-reactid="59"><!-- react-text: 60 -->字段型<!-- /react-text --></a></li></ul></section><section class="markdown" data-reactid="61"><h2 id="常规型" data-reactid="62"><span data-reactid="63"><!-- react-text: 64 -->常规型<!-- /react-text --></span><a href="#常规型" class="anchor" data-reactid="65">#</a></h2><h3 id="交互" data-reactid="66"><span data-reactid="67"><!-- react-text: 68 -->交互<!-- /react-text --></span><a href="#交互" class="anchor" data-reactid="69">#</a></h3><div class="preview-image-boxes clearfix" data-reactid="70"><div class="preview-image-box" data-reactid="71"><div class="preview-image-wrapper" data-reactid="72"><img class="preview-img" src="https://os.alipayobjects.com/rmsportal/NpRKspdYRDwsKnw.png" alt="交互示例" data-reactid="73"/></div><div class="preview-image-title" data-reactid="74">交互示例</div><div class="preview-image-description" data-reactid="75">在收起状态时，用户点击『高级搜索』展开；如果此前用户已经输入过文案，需要将值带到对应的输入框中。</div><!-- react-empty: 76 --></div></div><p data-reactid="77"><!-- react-text: 78 -->常规型常和表格搭配使用，适合在搜索条件多以及搜索值个数不确定的场景中。<!-- /react-text --></p><p data-reactid="79"><!-- react-text: 80 -->『高级搜索』功能一般开放给中间用户／专家用户使用，一般通过点击『高级搜索』触发；如果非常高频使用，可以默认展开『高级搜索』。<!-- /react-text --></p><p data-reactid="81"><br data-reactid="82"/></p><div class="preview-image-boxes clearfix" data-reactid="83"><div class="preview-image-box" data-reactid="84"><div class="preview-image-wrapper" data-reactid="85"><img class="preview-img" src="https://os.alipayobjects.com/rmsportal/gKiZtjopvLufqSP.png" alt="交互示例" data-reactid="86"/></div><div class="preview-image-title" data-reactid="87">交互示例</div><div class="preview-image-description" data-reactid="88">在『高级搜索』顶部放置 Alert ，用于展现已经输入的值；用户点击『清空』可以清空所有输入值；点击『高级搜索』可以再次展开『高级搜索』。</div><!-- react-empty: 89 --></div></div><p data-reactid="90"><!-- react-text: 91 -->当已经输入了值的『高级搜索』被隐藏时，需要展示检索条件和值。<!-- /react-text --></p><h3 id="排列规则" data-reactid="92"><span data-reactid="93"><!-- react-text: 94 -->排列规则<!-- /react-text --></span><a href="#排列规则" class="anchor" data-reactid="95">#</a></h3><div class="preview-image-boxes clearfix" data-reactid="96"><div class="preview-image-box" data-reactid="97"><div class="preview-image-wrapper" data-reactid="98"><img class="preview-img" src="https://os.alipayobjects.com/rmsportal/TsdXCWLPIETykye.png" alt="排列示例" data-reactid="99"/></div><div class="preview-image-title" data-reactid="100">排列示例</div><div class="preview-image-description" data-reactid="101"></div><!-- react-empty: 102 --></div></div><p data-reactid="103"><!-- react-text: 104 -->搜索条件的排布顺序需要和表格中的标题顺序，尽可能保持一致；如果非常高频使用的搜索条件，可以放在最前面。<!-- /react-text --></p><h3 id="规格" data-reactid="105"><span data-reactid="106"><!-- react-text: 107 -->规格<!-- /react-text --></span><a href="#规格" class="anchor" data-reactid="108">#</a></h3><div class="preview-image-boxes clearfix" data-reactid="109"><div class="preview-image-box" data-reactid="110"><div class="preview-image-wrapper" data-reactid="111"><img class="preview-img" src="https://os.alipayobjects.com/rmsportal/fuPcwZCYiohhdSt.png" alt="规格示例" data-reactid="112"/></div><div class="preview-image-title" data-reactid="113">规格示例</div><div class="preview-image-description" data-reactid="114"></div><!-- react-empty: 115 --></div></div><div class="preview-image-boxes clearfix" data-reactid="116"><div class="preview-image-box" data-reactid="117"><div class="preview-image-wrapper" data-reactid="118"><img class="preview-img" src="https://os.alipayobjects.com/rmsportal/bFLUSbwoNoakKYS.png" alt="规格示例" data-reactid="119"/></div><div class="preview-image-title" data-reactid="120">规格示例</div><div class="preview-image-description" data-reactid="121"></div><!-- react-empty: 122 --></div></div><ul data-reactid="123"><li data-reactid="124"><p data-reactid="125"><!-- react-text: 126 -->横向排版<!-- /react-text --></p><p data-reactid="127"><!-- react-text: 128 -->在一行不要放置 3 列以上的输入框；标签和输入框应该落在栅格上。<!-- /react-text --></p></li><li data-reactid="129"><p data-reactid="130"><!-- react-text: 131 -->纵向排版<!-- /react-text --></p><p data-reactid="132"><!-- react-text: 133 -->使用 <!-- /react-text --><code data-reactid="134"><!-- react-text: 135 -->16px<!-- /react-text --></code><!-- react-text: 136 --> 作为间距。<!-- /react-text --></p></li></ul><h2 id="字段型" data-reactid="137"><span data-reactid="138"><!-- react-text: 139 -->字段型<!-- /react-text --></span><a href="#字段型" class="anchor" data-reactid="140">#</a></h2><h3 id="交互" data-reactid="141"><span data-reactid="142"><!-- react-text: 143 -->交互<!-- /react-text --></span><a href="#交互" class="anchor" data-reactid="144">#</a></h3><div class="preview-image-boxes clearfix" data-reactid="145"><div class="preview-image-box" data-reactid="146"><div class="preview-image-wrapper" data-reactid="147"><img class="preview-img" src="https://os.alipayobjects.com/rmsportal/TUxfnHjfTJeKaDq.png" alt="交互示例" data-reactid="148"/></div><div class="preview-image-title" data-reactid="149">交互示例</div><div class="preview-image-description" data-reactid="150"></div><!-- react-empty: 151 --></div></div><p data-reactid="152"><!-- react-text: 153 -->字段型一般会出现在主搜索框底部，适合搜索条件和值都比较少的场景中。<!-- /react-text --></p></section><section class="markdown api-container" data-reactid="154"></section></article></div></div><div class="ant-row" data-reactid="155"><div class="ant-col-xs-24 ant-col-sm-24 ant-col-md-18 ant-col-md-offset-6 ant-col-lg-20 ant-col-lg-offset-4" data-reactid="156"><section class="prev-next-nav" data-reactid="157"><a class="prev-page" href="/docs/pattern/complex-table-cn" data-reactid="158">表格：复杂数据</a></section></div></div></div><footer id="footer" data-reactid="159"><ul data-reactid="160"><li data-reactid="161"></li><li data-reactid="162"></li><li data-reactid="163"></li><li data-reactid="164"><h2 data-reactid="165"><!-- react-text: 166 -->Ant Design Copyright © <!-- /react-text --><!-- react-text: 167 -->2017<!-- /react-text --></h2><h2 data-reactid="168"><!-- react-text: 169 -->Photon Copyright © <!-- /react-text --><!-- react-text: 170 -->2017<!-- /react-text --></h2></li></ul></footer></div>
+    </div>
+    
+      
+        <script src="https://as.alipayobjects.com/g/component/??react/15.6.1/react.min.js,react/15.6.1/react-dom.min.js"></script>
+      
+    
+    <script src="/common.js"></script>
+    <script src="/index.js"></script>
+  </body>
+</html>
