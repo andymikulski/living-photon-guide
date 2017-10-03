@@ -32,6 +32,7 @@ ReactDOM.render(
       <Tag color="cyan">cyan</Tag>
       <Tag color="blue">blue</Tag>
       <Tag color="purple">purple</Tag>
+      <Tag color="yellow">yellow</Tag>
     </div>
     <h4 style={{ margin: '16px 0' }}>Custom:</h4>
     <div>
