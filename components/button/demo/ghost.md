@@ -14,7 +14,7 @@ title:
 `ghost` property will make button's background transparent, it is common used in colored background.
 
 ````jsx
-import { Button } from 'antd';
+import { Button, Icon } from 'antd';
 
 ReactDOM.render(
   <div style={{ background: 'rgb(190, 200, 200)', padding: '26px 16px 16px' }}>
@@ -22,6 +22,11 @@ ReactDOM.render(
     <Button ghost>Default</Button>
     <Button type="dashed" ghost>Dashed</Button>
     <Button type="danger" ghost>danger</Button>
+
+    <Button type="primary" ghost><Icon type="setting" /></Button>
+    <Button ghost><Icon type="setting" /></Button>
+    <Button type="dashed" ghost><Icon type="setting" /></Button>
+    <Button type="danger" ghost><Icon type="setting" /></Button>
   </div>
 , mountNode);
 ````
