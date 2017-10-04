@@ -1,0 +1,97 @@
+// Buttons
+
+.ant-btn {
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  line-height: 1em;
+
+  // For non-primary/danger buttons, apply gray stylings.
+  &:not(.ant-btn-primary, .ant-btn-danger) {
+    background-color: rgba(12, 12, 13, 0.1);
+    border: none;
+
+    &:hover,
+    &:focus {
+      background-color: rgba(12, 12, 13, 0.2);
+      border-color: rgba(12, 12, 13, 0.2);
+    }
+    &:active {
+      background-color: rgba(12, 12, 13, 0.3);
+      border-color: rgba(12, 12, 13, 0.3);
+    }
+  }
+
+  // Primary button states are various blues.
+  &.ant-btn-primary {
+    &:not([disabled]) {
+      background-color: @blue-60;
+      border-color: @blue-60;
+    }
+
+    &:hover,
+    &:focus {
+      background-color: @blue-70;
+      border-color: @blue-70;
+    }
+    &:active {
+      background-color: @blue-80;
+      border-color: @blue-80;
+    }
+  }
+}
+
+// Large buttons/groups should be "puffy."
+.ant-btn-group-lg,
+.ant-btn-lg {
+  border-radius: 4px;
+}
+
+// Puffy button groups.
+
+
+
+// Default size
+.ant-btn,
+.ant-btn-group > .ant-btn:first-child:not(:last-child),
+.ant-btn-group > .ant-btn:last-child:not(:first-child) {
+  font-size: 13px;
+  height: 32px;
+  padding: 0 8px;
+}
+.ant-btn-circle {
+  width: 32px;
+}
+
+// "Micro" sizes
+.ant-btn.ant-btn-sm,
+.ant-btn-group.ant-btn-group-sm > .ant-btn:first-child:not(:last-child),
+.ant-btn-group.ant-btn-group-sm > .ant-btn:last-child:not(:first-child) {
+  font-size: 11px;
+  height: 24px;
+  padding: 0 8px;
+}
+.ant-btn-circle.ant-btn-sm {
+  width: 24px;
+  .anticon {
+    margin-left: -2px;
+  }
+}
+
+// "Puffy" size
+.ant-btn.ant-btn-lg,
+.ant-btn-group.ant-btn-group-lg > .ant-btn:first-child:not(:last-child),
+.ant-btn-group.ant-btn-group-lg > .ant-btn:last-child:not(:first-child), {
+  font-size: 15px;
+  height: 48px;
+  padding: 0 16px;
+}
+// Puffy border-radius for large buttons
+.ant-btn-group-lg > .ant-btn:first-child:not(:last-child) {
+  border-radius: 4px 0 0 4px;
+}
+.ant-btn-group-lg > .ant-btn:last-child:not(:first-child) {
+  border-radius: 0 4px 4px 0;
+}
+.ant-btn-circle.ant-btn-lg {
+  width: 48px;
+}
