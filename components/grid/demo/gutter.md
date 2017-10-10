@@ -42,7 +42,7 @@ ReactDOM.render(
   border: 0;
 }
 .gutter-box {
-  background: #00A0E9;
+  background: #0060DF;
   padding: 5px 0;
 }
 ````

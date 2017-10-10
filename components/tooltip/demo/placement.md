@@ -1,6 +1,6 @@
 ---
 order: 1
-title: 
+title:
   zh-CN: 位置
   en-US: Placement
 ---
@@ -9,7 +9,7 @@ title:
 
 位置有 12 个方向。
 
-## en-US 
+## en-US
 
 The ToolTip has 12 placements choice.
 
@@ -69,13 +69,14 @@ ReactDOM.render(
 
 <style>
 #components-tooltip-demo-placement .code-box-demo a {
+  color: #0c0c0d;
   display: inline-block;
   line-height: 32px;
   height: 32px;
   width: 60px;
   font-size: 14px;
   text-align: center;
-  background: #f5f5f5;
+  background: #e1e1e2;
   margin-right: 1em;
   margin-bottom: 1em;
   border-radius: 6px;
